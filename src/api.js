@@ -1,17 +1,18 @@
-/* Get all episodes
-You can access the list of episodes by using the /episode endpoint.*/
 export const fetchEpisodes = () => {
-    return fetch('https://rickandmortyapi.com/api/episode')
-		.then((response) => 
-			response.json())
-		.then((data) => {
-    return data.results // Получ поле  results
-  })
-}
+  return fetch("https://rickandmortyapi.com/api/episode")
+    .then((response) => response.json())
+    .then((data) => {
+      return data.results;
+    });
+};
 
-// get multiple characters by adding an array of ids as parameter: /character/[1,2,3] or /character/1,2,3
+export const fetchCharacters = async (ids) => {
+  await sleep(1000);
+  return fetch(
+    `https://rickandmortyapi.com/api/character/${ids.join(",")}`
+  ).then((response) => response.json());
+};
 
-export const fetchCharacters = (ids) => { 
-    return fetch( 
-			`https://rickandmortyapi.com/api/character/${ids.join(',')}`) // массив → список
-			}
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
