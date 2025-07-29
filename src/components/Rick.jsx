@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { fetchEpisodes } from "../api"
+import { fetchEpisodes, fetchCharacters } from "../api"
 import "./Rick.css"
 
 export const Rick = () => {
@@ -11,16 +11,29 @@ export const Rick = () => {
 		}); // массив 20 эл. → список эпизодов
 	}, [])
 
+const handleEpisodeClick = (episode) => {
+	const ids = episode.characters.map((character) => {
+		const id = character.split("/").pop()
+		return id
+	})
+	fetchCharacters(ids).then((data) => {
+		console.log(data);
+	})
+}
+
 		return (
 			<div>
 			{episodes.map((episode) => {
 				return (
-					<div key={episode.id} className="episode">
-						<h1>{episode.name}</h1>
-					<p>{episode.air_date}</p>
-				</div>
-			) 
-		})}
-		</div>
+					<div 
+						key={episode.id}
+						className="episode"
+						onClick={() => handleEpisodeClick(episode)}
+					>
+						<h3>{episode.name}</h3>
+					</div>
+					) 
+				})}
+			</div>
 	)
 }
