@@ -3,12 +3,12 @@ import { fetchEpisodes, fetchCharacters } from "../api";
 import "./Rick.css";
 
 export const Rick = () => {
-  const [episodes, setEpisodes] = useState([]);
-  const [charactersByEpisodes, setCharactersByEpisodes] = useState({});
+  const [episodes, setEpisodes] = useState([]); // переменная для списка эпизодов
+  const [charactersByEpisodes, setCharactersByEpisodes] = useState({}); //объект → ключ - id эпизода; value - массив персонажей
   const [isLoadingByEpisodes, setIsLoadingByEpisodes] = useState({});
 
   useEffect(() => {
-    fetchEpisodes().then((data) => {
+    fetchEpisodes().then((data) => { // список эпизодов (массив / 20 эл)
       console.log(data);
       setEpisodes(data);
     });
@@ -22,11 +22,11 @@ export const Rick = () => {
 
     setIsLoadingByEpisodes({ ...isLoadingByEpisodes, [episode.id]: true });
 
-    fetchCharacters(ids).then((data) => {
+    fetchCharacters(ids).then((data) => { // загруз спис персонаж
       console.log(data);
-      setCharactersByEpisodes({ ...charactersByEpisodes, [episode.id]: data });
+      setCharactersByEpisodes({ ...charactersByEpisodes, [episode.id]: data }); // получ данные персонажей
       setIsLoadingByEpisodes({ ...isLoadingByEpisodes, [episode.id]: false });
-    });
+    }); // измен знач IsLoading
   };
 
   const getStatusClass = (status) => {

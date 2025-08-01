@@ -6,7 +6,7 @@ export const fetchEpisodes = () => {
     });
 };
 
-export const fetchCharacters = async (ids) => {
+export const fetchCharacters = async (ids) => { // список персонажей в эпизоде / массив
   await sleep(1000);
   return fetch(
     `https://rickandmortyapi.com/api/character/${ids.join(",")}`
