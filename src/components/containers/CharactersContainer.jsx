@@ -15,5 +15,5 @@ export const CharactersContainer = ({ids}) => {
 		})
 	}, [ids]) // это делается, когда меняются id
 
-	return <CharacterList characters={characters} isLoading={ isLoading} />
+	return <CharacterList characters={characters} isLoading={ isLoading } />
 }
