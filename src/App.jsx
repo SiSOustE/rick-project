@@ -1,8 +1,6 @@
-// src/App.jsx
 import React, { useState } from 'react';
 import { EpisodesContainer } from './components/containers/EpisodesContainer';
 import { LocationsContainer } from './components/containers/LocationsContainer';
-import './index.css';
 
 function App() {
   const [activeSection, setActiveSection] = useState(null); // null, 'episodes', или 'locations'
@@ -20,8 +18,9 @@ function App() {
         <div className="section">
           <div className="section-header" onClick={() => toggleSection('episodes')}>
             <h2 className="section-title">
-              Эпизоды {activeSection === 'episodes' ? '[-]' : '[+]'}
+              Эпизоды
             </h2>
+            <span>{activeSection === 'episodes' ? '[-]' : '[+]'}</span>
           </div>
           {activeSection === 'episodes' && (
             <div className="section-content">
@@ -34,8 +33,9 @@ function App() {
         <div className="section">
           <div className="section-header" onClick={() => toggleSection('locations')}>
             <h2 className="section-title">
-              Локации {activeSection === 'locations' ? '[-]' : '[+]'}
+              Локации
             </h2>
+            <span>{activeSection === 'locations' ? '[-]' : '[+]'}</span>
           </div>
           {activeSection === 'locations' && (
             <div className="section-content">

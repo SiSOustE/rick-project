@@ -1,4 +1,4 @@
-import React from "react"; // Добавлен импорт React
+import React from "react";
 
 export const CharacterItem = ({ character }) => {
   const getStatusClass = (status) => {
@@ -13,7 +13,7 @@ export const CharacterItem = ({ character }) => {
   };
 
   return (
-    <div className={`character ${getStatusClass(character.status)}`}> {}
+    <div className={`character ${getStatusClass(character.status)}`}>
       <div className="character-left">
         <img src={character.image} alt={character.name} />
       </div>
@@ -21,7 +21,7 @@ export const CharacterItem = ({ character }) => {
         <h3>{character.name}</h3>
         <div>Вид: {character.species}</div>
         <div>Пол: {character.gender}</div>
-        <div>Локация: {character.location.name}</div>
+        <div>Локация: {character.location?.name || 'Неизвестно'}</div>
       </div>
     </div>
   );

@@ -7,13 +7,23 @@ export const CharactersContainer = ({ids}) => {
 	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
+		if (!ids || ids.length === 0) {
+			setCharacters([]);
+			setIsLoading(false);
+			return;
+		}
 		setIsLoading(true)
-		fetchCharacters(ids).then((data) => { // загруж список персонажей
-			console.log(data);
-			setCharacters(data) // присв их объекту characters
-			setIsLoading(false) // измен isLoading
+		fetchCharacters(ids).then((data) => {
+			// API может вернуть объект, если запрашивался один персонаж
+			const dataArray = Array.isArray(data) ? data : [data];
+			setCharacters(dataArray)
+			setIsLoading(false)
+		}).catch(error => {
+			console.error("Ошибка загрузки персонажей:", error);
+			setCharacters([]);
+			setIsLoading(false);
 		})
-	}, [ids]) // это делается, когда меняются id
+	}, [ids])
 
-	return <CharacterList characters={characters} isLoading={ isLoading } />
+	return <CharacterList characters={characters} isLoading={ isLoading} />
 }

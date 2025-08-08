@@ -44,6 +44,9 @@ body {
   cursor: pointer;
   user-select: none;
   transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .section-header:hover {
@@ -61,7 +64,7 @@ body {
   background-color: #f8f9fa;
 }
 
-/* --- Стили для эпизодов (оставляем как было) --- */
+/* --- Стили для эпизодов --- */
 .episode {
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -77,59 +80,19 @@ body {
   color: #333;
 }
 
+.episode-info {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
 .characters-container {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px dashed #ccc;
 }
 
-.character {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  background-color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.character-left img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
-  object-fit: cover;
-}
-
-.character-alive {
-  border-left: 4px solid #28a745; /* Bootstrap success green */
-  background-color: #d4edda;
-}
-
-.character-dead {
-  border-left: 4px solid #dc3545; /* Bootstrap danger red */
-  background-color: #f8d7da;
-}
-
-.character-unknown {
-  border-left: 4px solid #6c757d; /* Bootstrap secondary gray */
-  background-color: #e2e3e5;
-}
-
-.loading {
-  text-align: center;
-  color: #888;
-  font-style: italic;
-  padding: 10px 0;
-}
-
-.no-data {
-  text-align: center;
-  color: #888;
-  padding: 10px 0;
-}
-
-/* --- НОВЫЕ СТИЛИ ДЛЯ ЛОКАЦИЙ --- */
+/* --- Стили для локаций --- */
 .location-item {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -142,12 +105,12 @@ body {
 .location-header {
   padding: 15px;
   cursor: pointer;
-  background-color: #f1f3f5; /* Светло-серый фон */
+  background-color: #f1f3f5;
   transition: background-color 0.2s ease;
 }
 
 .location-header:hover {
-    background-color: #e9ecef; /* Немного темнее при наведении */
+    background-color: #e9ecef;
 }
 
 .location-name {
@@ -178,4 +141,74 @@ body {
 .location-details h4 {
     margin-top: 0;
     color: #495057;
+}
+
+/* --- Стили для персонажей --- */
+.character {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border-left: 4px solid #ccc; /* Стандартный цвет для неизвестного статуса */
+}
+
+.character:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.character-left img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.character-right {
+  flex-grow: 1;
+}
+
+.character-right h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1em;
+}
+
+.character-right div {
+  margin: 2px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Цветовые индикаторы статуса */
+.character-alive {
+  border-left: 4px solid #28a745; /* Bootstrap success green */
+  background-color: #d4edda;
+}
+
+.character-dead {
+  border-left: 4px solid #dc3545; /* Bootstrap danger red */
+  background-color: #f8d7da;
+}
+
+.character-unknown {
+  border-left: 4px solid #6c757d; /* Bootstrap secondary gray */
+  background-color: #e2e3e5;
+}
+
+/* Стили для состояний загрузки и отсутствия данных */
+.loading {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.no-data {
+  text-align: center;
+  color: #888;
+  padding: 10px 0;
 }

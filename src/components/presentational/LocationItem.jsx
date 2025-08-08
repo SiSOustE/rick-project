@@ -1,7 +1,6 @@
-// src/components/presentational/LocationItem.jsx
 import React, { useState } from "react";
-import { fetchCharacters } from "../../api"; // Для загрузки резидентов
-import { CharacterList } from "./CharacterList"; // Для отображения резидентов
+import { fetchCharacters } from "../../api";
+import { CharacterList } from "./CharacterList";
 
 export const LocationItem = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,13 +10,13 @@ export const LocationItem = ({ location }) => {
   const toggleResidents = async () => {
     if (!isOpen) {
       // Загружаем резидентов только при первом открытии
-      if (residents.length === 0 && location.residents.length > 0) {
+      if (residents.length === 0 && location.residents && location.residents.length > 0) {
         setIsLoadingResidents(true);
         try {
           // Извлекаем ID из URL резидентов
           const residentIds = location.residents.map(url =>
             url.split("/").pop()
-          );
+          ).filter(id => id); // Фильтр на случай пустых URL
           const residentData = await fetchCharacters(residentIds);
           // fetchCharacters может вернуть массив или объект, если один элемент
           const residentArray = Array.isArray(residentData) ? residentData : [residentData];
@@ -51,7 +50,7 @@ export const LocationItem = ({ location }) => {
           ) : residents.length > 0 ? (
             <CharacterList characters={residents} isLoading={false} />
           ) : (
-            <p>Нет доступных данных о резидентах.</p>
+            <p className="no-data">Нет доступных данных о резидентах.</p>
           )}
         </div>
       )}

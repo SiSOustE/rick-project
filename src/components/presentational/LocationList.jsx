@@ -1,4 +1,3 @@
-// src/components/presentational/LocationList.jsx
 import React from "react";
 import { LocationItem } from "./LocationItem";
 

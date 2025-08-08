@@ -1,26 +1,12 @@
-import { EpisodeItem } from "./EpisodeItem"
-import { Collapse } from "./Collapse"
-import { CharactersContainer } from "../containers/CharactersContainer"
+import React from "react";
+import { EpisodeItem } from "./EpisodeItem";
 
-export const EpisodeList = ({episodes}) => {
+export const EpisodeList = ({ episodes }) => {
 	return (
 		<div>
 			{episodes.map((episode) => (
-				// <EpisodeItem key={episode.id} episode={episode} />
-				<Collapse
-					key={episode.id}
-					className="episode"
-					title={episode.episode + ":" + episode.name}
-					content={
-						<CharactersContainer
-							ids={episode.characters.map(character => {
-								const id = character.split("/").pop()
-								return id
-						})}
-					/>
-				}
-			/>
-		))}
+				<EpisodeItem key={episode.id} episode={episode} />
+			))}
 		</div>
-	)
-}
+	);
+};
